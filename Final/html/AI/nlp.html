@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      
+      textarea {
+        width: 80%;
+        height: 100px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      
+      button {
+        font-size: 18px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      button:hover {
+        background-color: #0062cc;
+      }
+      
+      #result {
+        margin-top: 20px;
+        text-align: center;
+      }
+    </style>
+    <script>
+      function compareText() {
+        document.getElementById("result").innerHTML = "Loading...";
+        setTimeout(function() {
+          var text1 = document.getElementById("text1").value.toLowerCase();
+          var text2 = document.getElementById("text2").value.toLowerCase();
+          var commonWords = [];
+          var text1Words = text1.split(" ");
+          var text2Words = text2.split(" ");
+    
+          for (var i = 0; i < text1Words.length; i++) {
+            for (var j = 0; j < text2Words.length; j++) {
+              if (text1Words[i] === text2Words[j]) {
+                commonWords.push(text1Words[i]);
+                break;
+              }
+            }
+          }
+          
+          var names = [];
+          for (var i = 0; i < text1Words.length; i++) {
+            if (text1Words[i][0] === text1Words[i][0].toUpperCase() && text1Words[i].length > 2) {
+              names.push(text1Words[i]);
+            }
+          }
+    
+          var percent = (commonWords.length / (text1Words.length + text2Words.length - commonWords.length)) * 100;
+          document.getElementById("result").innerHTML = "Similarity: " + percent.toFixed(2) + "%<br>Similar words: " + commonWords.join(", ");
+        }, 1000);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <textarea id="text1" placeholder="Enter first text"></textarea>
+      <textarea id="text2" placeholder="Enter second text"></textarea>
+      <button onclick="compareText()">Compare</button>
+      <p id="result"></p>
+    </div>
+  </body>
+</html>
