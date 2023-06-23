@@ -1,3 +1,34 @@
+<?php
+
+include '../components/connect.php';
+
+if(isset($_POST['submit'])){
+   
+   $name = $_POST['name'];
+   $name = filter_var($name, FILTER_SANITIZE_STRING);
+   $year = $_POST['year'];
+   $year = filter_var($year, FILTER_SANITIZE_STRING);
+   $department = $_POST['department'];
+   $department= filter_var($department, FILTER_SANITIZE_STRING);
+   $student_number = $_POST['student_number'];
+   $student_number = filter_var($student_number, FILTER_SANITIZE_STRING);
+   $pnumber = $_POST['pnumber'];
+   $pnumber = filter_var($pnumber, FILTER_SANITIZE_STRING);
+  
+
+   echo 'Submitted, Thank you!';
+    $insert = $conn->prepare("INSERT INTO `claimant`(name, level, department, studentN, PhoneN) VALUES(?,?,?,?,?)");
+    $insert->execute([$name, $year, $department, $student_number, $pnumber]);
+
+
+    header('Location: second.html');
+   
+    
+
+};
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +101,7 @@
 <body>
     <h1>Claimant's Information</h1>
     <div class="form-container">
-        <form action="submit.php" method="post">
+        <form action=""  method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -97,85 +128,9 @@
                 <label for="pnumber">Phone Number:</label>
                 <input type="text" id="pnumber" name="pnumber" placeholder="Enter phone number" required>
             </div>
-            <input type="submit" value="Submit" class="submit-btn" style="background-color: #4CAF50; color: white; border-radius: 10px; padding: 10px;">
+            <input name="submit" type="submit" value="Submit" class="submit-btn" style="background-color: #4CAF50; color: white; border-radius: 10px; padding: 10px;">
         </form>
     </div>
 </body>
-<?php
-    //Import PHPMailer classes into the global namespace
-    //These must be at the top of your script, not inside a function
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
- 
-    //Load Composer's autoloader
-    require 'vendor/autoload.php';
- 
-    if (isset($_POST["submit"]))
-    {
-        $name = $_POST["name"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
- 
-        //Instantiation and passing `true` enables exceptions
-        $mail = new PHPMailer(true);
- 
-        try {
-            //Enable verbose debug output
-            $mail->SMTPDebug = 0;//SMTP::DEBUG_SERVER;
- 
-            //Send using SMTP
-            $mail->isSMTP();
- 
-            //Set the SMTP server to send through
-            $mail->Host = 'smtp.gmail.com';
- 
-            //Enable SMTP authentication
-            $mail->SMTPAuth = true;
- 
-            //SMTP username
-            $mail->Username = 'your_email@gmail.com';
- 
-            //SMTP password
-            $mail->Password = 'your_password';
- 
-            //Enable TLS encryption;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
- 
-            //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-            $mail->Port = 587;
- 
-            //Recipients
-            $mail->setFrom('your_email@gmail.com', 'your_website_name');
- 
-            //Add a recipient
-            $mail->addAddress($email, $name);
- 
-            //Set email format to HTML
-            $mail->isHTML(true);
- 
-            $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
- 
-            $mail->Subject = 'Email verification';
-            $mail->Body    = '<p>Your verification code is: <b style="font-size: 30px;">' . $verification_code . '</b></p>';
- 
-            $mail->send();
-            // echo 'Message has been sent';
- 
-            $encrypted_password = password_hash($password, PASSWORD_DEFAULT);
- 
-            // connect with database
-            $conn = mysqli_connect("localhost:8889", "root", "root", "test");
- 
-            // insert in users table
-            $sql = "INSERT INTO users(name, email, password, verification_code, email_verified_at) VALUES ('" . $name . "', '" . $email . "', '" . $encrypted_password . "', '" . $verification_code . "', NULL)";
-            mysqli_query($conn, $sql);
- 
-            header("Location: email-verification.php?email=" . $email);
-            exit();
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        }
-    }
-?>
+
 </html>
