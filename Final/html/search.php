@@ -297,7 +297,7 @@ genetic.start();
      if($select_products->rowCount() > 0){
       while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
    ?>
-   <form action="" method="post" class="box">
+   <form action="first.php" method="post" class="box">
       <input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
       <input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
       <input type="hidden" name="type" value="<?= $fetch_product['type']; ?>">
