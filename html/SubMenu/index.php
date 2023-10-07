@@ -1,3 +1,18 @@
+<?php
+// Check if the 'pid' parameter exists in the URL
+if (isset($_GET['pid'])) {
+    // Retrieve the 'pid' value from the URL
+    $pid = $_GET['pid'];
+
+  
+
+    // You can use $pid to perform any actions or display content based on it
+} else {
+    // Handle the case where 'pid' is not present in the URL
+    echo "No pid parameter found in the URL.";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,5 +44,9 @@
   <canvas id="canvas" width="720" height="500" ></canvas>
   <p style="margin-top: 90px; text-align: center; position: absolute;bottom: 50px;left: 50%;transform: translateX(-50%); font-family: 'Segui', sans-serif;font-size: 18px;">Note: This is an AI Facial Emotion Recognition to validate that a real human face is being recorded to the database. </p>
   <p style="font-family: 'Segui', sans-serif;font-size: 18px;position: absolute;bottom: 20px;left: 50%;transform: translateX(-50%);">Smile to Capture. </p>
+  <form id="redirectForm" action="../compare.php" method="get">
+  <input type="hidden" name="pid" value="<?php echo $pid; ?>">
+</form>
+
 </body>
 </html>

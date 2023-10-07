@@ -3,7 +3,40 @@
 include '../components/connect.php';
 
 ?>
+<?php
+// Define variables to store user input
+$pid  = "";
 
+// Define an array to store errors
+$errors = [];
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   // Validate and sanitize user input
+   $pid = sanitize_input($_POST["name"]);
+
+
+   // Validate name
+   if (empty($pid)) {
+      $errors[] = "Name is required.";
+   }
+
+
+
+   // If there are no errors, proceed to the next form
+   if (empty($errors)) {
+      // Redirect to the next form with the data in the query string
+      header("Location: SubMenu/menu.php?pid=$pid");
+      exit();
+   }
+}
+
+// Function to sanitize user input
+function sanitize_input($data) {
+   $data = trim($data);
+   return $data;
+}
+?>
 
 
 
@@ -298,7 +331,7 @@ genetic.start();
       while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
    ?>
 
-   <form action="surrender.php" method="post" class="box">
+   <form action="SubMenu/menu.php" method="post" class="box">
       <input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
       <input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
       <input type="hidden" name="type" value="<?= $fetch_product['type']; ?>">
@@ -308,8 +341,7 @@ genetic.start();
       <div class="type"><?= $fetch_product['type']; ?></div>
       <div class="type"><?= $fetch_product['othertype']; ?></div>
       <div class="flex">
-         <div class="price"><span>Date Surrendered: </span><?= $fetch_product['date']; ?><span></span></div>
-         
+         <div class="price"><span>Date Surrendered: </span><?= $fetch_product['date']; ?><span></span></div>     
       </div>
       <input type="submit" value="Claim" class="btn" name="claim">
    </form>

