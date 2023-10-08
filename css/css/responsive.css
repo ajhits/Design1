@@ -1,0 +1,137 @@
+
+/* Cellphone */
+@media (max-width: 767px){
+
+    /* Options */
+
+    .options {
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .options .options_box h4 {
+        font-size: 50px;
+        line-height: 30px;
+        font-weight: 501;
+    }
+
+    .img-logo {
+        text-align: center;
+        margin-left: 20px;
+    }
+
+    .img-logo img{
+        max-width: 250px; /* Set the maximum width of the image */
+        height: auto;
+        display: block;
+        margin: 15px auto 15px;
+    }
+
+    .titlepage h2 {
+        font-size: 29px;
+        line-height: 40px;
+    }
+
+    .options .titlepage span {
+        padding: 0;
+    }
+
+    /* Information */
+    .main_form {
+        padding: 60px 30px 80px 30px;
+    }
+
+    .text-bg {
+        padding-bottom: 30px;
+    }
+
+    .text-bg h1 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 991px){
+
+    /* Options */
+
+    .options {
+        justify-content: center;
+        align-items: center; 
+    }
+
+    .options .options_box h4 {
+        font-size: 35px;
+        line-height: 30px;
+        font-weight: 501;
+    }
+
+    /* Information */
+    .img-logo {
+        text-align: left;
+        margin-left: 20px;
+    }
+
+    .img-logo img{
+        max-width: 250px; /* Set the maximum width of the image */
+        height: auto;
+        display: block;
+        margin: 0;
+    }
+
+    .text-bg h1 {
+        font-size: 77px;
+        line-height: 100px;
+        padding-bottom: 650px;
+    }
+    .text-bg {
+        margin: 0; 
+        text-align: center; 
+    }
+    .titlepage h2 {
+        font-size: 39px;
+    }
+
+    .main_form {
+        padding: 60px 30px 80px 30px;
+    }
+}
+
+/* Laptops */
+@media (max-width: 992px){
+    .img-logo {
+        text-align: left;
+        margin-left: 20px;
+    }
+
+    .img-logo img{
+        max-width: 350spx; /* Set the maximum width of the image */
+        height: auto;
+        display: block;
+        margin: 150px auto 15px;
+    }
+
+    .text-bg {
+        text-align: center;
+        margin-right: 600px;
+    }
+
+    .text-bg h1 {
+        color: #ffffff;
+        font-size: 45px;
+        line-height: 75px;
+        padding-bottom: 15px;
+        font-weight: bold;
+        margin-left: 20px; 
+    }
+
+}
+
+/* For larger devices */
+@media(min-width: 993px){
+
+}
+

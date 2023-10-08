@@ -47,15 +47,17 @@ if (isset($_POST['add_student'])) {
     <title>Student</title>
 
      <!-- style css -->
-     <link rel="stylesheet" href="../../css/css/style.css">
-     <!-- bootstrap css -->
-     <link rel="stylesheet" href="../../css/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/css/style.css">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="../../css/css/bootstrap.min.css">
+    <!-- responsive -->
+    <link rel="stylesheet" href="../../css/css/responsive.css">
  
      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 </head>
 <body>
-    <a href="menu.php" class="back-button"><i class="fa fa-arrow-left"></i> Back</a>
+    <a href="../search.php" class="back-button"><i class="fa fa-arrow-left"></i> Back</a>
     
     <section class="information">
         <div class="container">

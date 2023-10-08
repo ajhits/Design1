@@ -49,4 +49,25 @@ if (isset($_GET['pid'])) {
 </form>
 
 </body>
+<script>
+  const videoElement = document.getElementById('video');
+
+// Replace 'your_camera_ip' and 'your_camera_port' with the IP and port of your camera
+const cameraUrl = `http://your_camera_ip:your_camera_port/video.mjpeg`;
+
+// Check if the browser supports the MediaDevices API
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices
+    .getUserMedia({ video: { facingMode: 'user' } }) // Request access to the camera
+    .then(function (stream) {
+      videoElement.srcObject = stream; // Set the camera stream as the video source
+    })
+    .catch(function (error) {
+      console.error('Error accessing the camera:', error);
+    });
+} else {
+  console.error('getUserMedia is not supported in this browser.');
+}
+
+</script>
 </html>

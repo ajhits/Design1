@@ -3,6 +3,15 @@
     padding: 0;
 }
 
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(../images/sas.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
 h1,
 h2,
 h4 {
@@ -50,12 +59,12 @@ img {
 /* claimant option */
 
 .options {
-    background-image: url(../images/sas.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    /* margin: 0; */
-    padding: 50px 0;
+    /* margin: 90px 0; */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
     height: 100vh;
+    flex-direction: column; /* Stack items vertically */
 }
 
 .options .titlepage span {
@@ -106,12 +115,15 @@ img {
 
 /* claimants information */
 
+.d_flex {
+    /* display: flex;
+    align-items: center;
+    flex-wrap: wrap; 
+    margin: 0%; */
+}
+
 .information {
-    background-image: url(../images/sas.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    /* margin: 0; */
-    padding: 50px 0;
+    padding: 30px 0;
     height: 100vh;
 }
 
@@ -138,13 +150,15 @@ img {
     max-width: 500px; /* Set the maximum width of the image */
     height: auto;
     display: block;
-    margin: 150px auto 15px;
+    margin: 50px auto 15px;
 }
 
 .main_form {
+    flex: 1;
     padding: 60px 50px 80px 50px;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
+    margin-bottom: 20px;
     border-top: #eda911 solid 15px;
 }
 
@@ -218,6 +232,55 @@ img {
 
 /* end of claimants information */
 
+/* compare section*/
+
+.text-compare {
+    text-align: center;
+}
+
+.text-compare h3 {
+    color: #ffffff;
+    font-size: 30px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    margin: 20px auto; /* Center the h3 horizontally */
+}
+
+/* end of compare section */
+
+/* direction */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+.help-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#help-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+
+/* end of direction */
+
 /* back button */
 
 .back-button {
@@ -241,16 +304,3 @@ img {
 
 /* end of back button */
 
-@media (max-width: 1900px){
-    .options {
-        background-size: cover;
-        background-attachment: scroll;
-        height: auto;
-    }
-
-    .information {
-        background-size: cover;
-        background-attachment: scroll;
-        height: auto;
-    }
-}

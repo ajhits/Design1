@@ -9,6 +9,8 @@
      <link rel="stylesheet" href="../../css/css/facandothers.css">
      <!-- bootstrap css -->
      <link rel="stylesheet" href="../../css/css/bootstrap.min.css">
+     <!-- responsive -->
+    <link rel="stylesheet" href="../../css/css/responsive.css">   
  
      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
@@ -16,7 +18,7 @@
 </head>
 <body>
 
-    <a href="menu.php" class="back-button"><i class="fa fa-arrow-left"></i> Back</a>
+    <a href="../search.php" class="back-button"><i class="fa fa-arrow-left"></i> Back</a>
     
     <section class="information">
         <div class="container">
@@ -30,10 +32,10 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <form id="request" action="../FaceDetect/" method="post" class="main_form">
+                    <form id="request" class="main_form">
                         <div class="row">
                             <div class="col-md-12 ">
-                                <input class="contactus" placeholder="Name" type="type" name="Name" required> 
+                                <input class="contactus" placeholder="Name" type="type" name="Name"> 
                             </div>
                             <div class="col-md-12">
                                 <select class="form-select" style="height: 55px; " >
@@ -45,10 +47,10 @@
                                 </select>
                             </div>
                             <div class="col-md-12">
-                                <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number" required>                          
+                                <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
                             </div>
                             <div class="col-md-12">
-                                <input class="contactus" placeholder="Email" type="type" name="Email" required>                          
+                                <input class="contactus" placeholder="Email" type="type" name="Email">                          
                             </div>
                             <div class="col-sm-12">
                                 <button class="send_btn">Send</button>
