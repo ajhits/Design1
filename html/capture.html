@@ -173,18 +173,6 @@
         });
         
 
-      // wala ata to
-      openImgBtn.addEventListener('click', function() {
-          var image = canvas.toDataURL("image/png");
-
-          var tab = window.open('', '_blank');
-
-          tab.document.write(image.outerHTML);
-          tab.location = 'http://localhost/nbew';
-          tab.document.write('<img src="' + image + '"/>');
-        });
-      }
-      
   
       // TELEGRAM CHATBOT
 
@@ -197,58 +185,8 @@
       var pogiSiCarl = 1120054024;
       var message;
       
-      
-      
-      
-      var ready = function () {
-          message = "House Emergency Alarm";
-          message = "Message: " + message;
-      };
-      
-      
-      //SEND1
-      var sender = function () {
-          ready();
-          var settings = {
-              "async": true,
-              "crossDomain": true,
-              "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
-              "method": "POST",
-              "headers": {
-                  "Content-Type": "application/json",
-                  "cache-control": "no-cache"
-              },
-              "data": JSON.stringify({
-                  "chat_id": helloFriend,
-                  "text": message
-              })
-          };
-          $.ajax(settings).done(function (response) {
-              console.log(response);
-          });
-      };
-      
-      //SEND2
-      var sender2 = function () {
-          ready();
-          var settings = {
-              "async": true,
-              "crossDomain": true,
-              "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
-              "method": "POST",
-              "headers": {
-                  "Content-Type": "application/json",
-                  "cache-control": "no-cache"
-              },
-              "data": JSON.stringify({
-                  "chat_id": chat_id2,
-                  "text": message
-              })
-          };
-          $.ajax(settings).done(function (response) {
-              console.log(response);
-          });
-      };
+    
+      }
 
   </script>
   
