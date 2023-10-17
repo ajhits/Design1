@@ -23,19 +23,18 @@ if(isset($_POST['add_item'])){
    $other_loc = $_POST['other_loc'];
    $other_loc = filter_var($other_loc, FILTER_SANITIZE_STRING);
 
-   $image_01 = $_FILES['image_01']['name'];
-   $image_01 = filter_var($image_01, FILTER_SANITIZE_STRING);
-   $image_size_01 = $_FILES['image_01']['size'];
-   $image_tmp_name_01 = $_FILES['image_01']['tmp_name'];
-   $image_folder_01 = '../uploaded_img/'.$image_01;
-
-   $image_02 = $_FILES['image_02']['name'];
-   $image_02 = filter_var($image_02, FILTER_SANITIZE_STRING);
-   $image_size_02 = $_FILES['image_02']['size'];
-   $image_tmp_name_02 = $_FILES['image_02']['tmp_name'];
-   $image_folder_02 = '../uploaded_img/'.$image_02;
-
-
+   function generateRandomCode($length = 6) {
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $code = '';
+      $max = strlen($characters) - 1;
+  
+      for ($i = 0; $i < $length; $i++) {
+          $code .= $characters[rand(0, $max)];
+      }
+  
+      return $code;
+  }
+   $code = generateRandomCode();
    $select_products = $conn->prepare("SELECT * FROM `Items` WHERE name = ?");
    $select_products->execute([$name]);
 
@@ -43,15 +42,14 @@ if(isset($_POST['add_item'])){
       $message[] = 'Item already exist!';
    }else{
       echo 'Item Surrendered, Thank you!';
-      $insert_products = $conn->prepare("INSERT INTO `Items`(name, datefound, type, othertype, brand, color, date, description, location, otherloc, image_01, image_02) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
-      $insert_products->execute([$name, $date, $type, $othertype, $brand, $color, $date_today, $description, $location, $other_loc, $image_01, $image_02]);
+      $insert_products = $conn->prepare("INSERT INTO `items`(name, datefound, type, othertype, brand, color, date, description, location, otherloc,code) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+      $insert_products->execute([$name, $date, $type, $othertype, $brand, $color, $date_today, $description, $location, $other_loc, $code]);
 
          if($insert_products){
             if($image_size_01 > 2000000 OR $image_size_02 > 2000000 OR $image_size_03 > 2000000){
                echo 'Image size is too large!';
             }else{
-               move_uploaded_file($image_tmp_name_01, $image_folder_01);
-               move_uploaded_file($image_tmp_name_02, $image_folder_02);
+               
                header('Location: capture.html');
             }
    
@@ -102,7 +100,16 @@ if(isset($_POST['add_item'])){
 button:hover{
    background-color: var(--black);
 }
-/
+
+.square-box {
+   background-color: #fff;
+   max-width: 600px; /* Set your desired maximum width */
+   margin: 0 auto; /* Center the box horizontally */
+   padding: 20px; /* Add some padding to space the content from the edges */
+
+   }
+
+
 
 
 
@@ -118,7 +125,7 @@ button:hover{
 
    <a href="../html/index.html" style="text-decoration:none;">
    <button  class="fas fa-arrow-left" type="button" id="return"></button></a>
-
+   <div class="square-box">
    <form action="" method="post" enctype="multipart/form-data">
       <div class="flex">
          <hidden class="inputBox">
@@ -127,7 +134,7 @@ button:hover{
          </div>
          <div class="inputBox">
             <span><br>Date Recovered</span>
-            <input type="date" class="box"  name="date" id="date">
+            <input style="background-color:lightgray;" type="date" class="box" name="date" id="date">
          </div>
       <div class="inputBox">
          <span><br>Item Type</span>
@@ -192,22 +199,15 @@ button:hover{
           <span><br>Please Specify</span>
             <input type="text" class="box" placeholder="Example: CR CEA" name="other_loc" id="other_loc">
          </div>
-         <div class="inputBox">
-            <span>Picture Item</span>
-            <input type="file" name="image_01" accept="image/jpg, image/jpeg, image/png, image/webp" class="box" id="fileInput" required>
-       </div>
-        <div class="inputBox">
-            <span>Picture Item</span>
-            <input type="file" name="image_02" accept="image/jpg, image/jpeg, image/png, image/webp" class="box" required>
-        </div>
-
-      </div>
+         
       
-      <input type="submit" value="Surrender" class="btn" name="add_item">
+      
+      <input style="background-color:#2980b9; color: white;" type="submit" value="Surrender" class="btn" name="add_item">
    </form>
+   </div>
 <button name="hidden-btn" onclick="modal1();" id="mpopupLink" hidden>click me</button>
 
-      
+
 
 </section>
 <script>

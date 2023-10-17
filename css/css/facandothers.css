@@ -1,0 +1,147 @@
+/* claimants information */
+
+.information {
+    background-image: url(../images/sas.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* margin: 0; */
+    padding: 200px 0;
+    height: 100vh;
+}
+
+.text-bg {
+    text-align: left;
+}
+
+.text-bg h1 {
+    color: #ffffff;
+    font-size: 90px;
+    line-height: 120px;
+    padding-bottom: 15px;
+    font-weight: bold;
+}
+
+.img-logo {
+    text-align: left;
+}
+
+.img-logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 15px; 
+    padding-top: 75px;
+    padding-right: 50px;
+}
+
+.main_form {
+    padding: 60px 50px 80px 50px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    border-top: #eda911 solid 15px;
+}
+
+.main_form .contactus {
+    border: inherit;
+    margin-bottom: 70px;
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    color: #fbfaf8;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: inherit;
+    border-bottom: #fff solid 1px;
+}
+
+.main_form .form-select {
+    border: inherit;
+    margin-bottom: 50px;
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fbfaf8;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: inherit;
+    border-bottom: #fff solid 1px;
+    border-radius: 4px;
+}
+
+
+.main_form .textarea {
+    border: #f6c2d7 solid 1px;
+    padding: 0px 19px;
+    margin-bottom: 20px;
+    width: 100%;
+    background: transparent;
+    color: #f5bed2;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 15px;
+    padding-top: 35px;
+}
+
+.main_form .send_btn {
+    font-size: 17px;
+    transition: ease-in all 0.5s;
+    background-color: #000;
+    color: #fff;
+    padding: 13px 0px;
+    margin: 0 auto;
+    max-width: 200px;
+    width: 100%;
+    display: block;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-radius: 35px;
+}
+
+.main_form .send_btn:hover {
+    background-color: #eda911;
+    transition: ease-in all 0.5s;
+    color: #000;
+}
+
+#request *::placeholder {
+    color: #fbfaf8;
+    opacity: 1;
+}
+
+/* end of claimants information */
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    color: #000000;
+    background-color: #eda911;
+    text-decoration: none;
+}
+
+@media (max-width: 1900px){
+    .options {
+        background-size: cover;
+        background-attachment: scroll;
+        height: auto;
+    }
+
+    .information {
+        background-size: cover;
+        background-attachment: scroll;
+        height: auto;
+    }
+}
+
+

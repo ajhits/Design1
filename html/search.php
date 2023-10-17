@@ -3,7 +3,40 @@
 include '../components/connect.php';
 
 ?>
+<?php
+// Define variables to store user input
+$pid  = "";
 
+// Define an array to store errors
+$errors = [];
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   // Validate and sanitize user input
+   $pid = sanitize_input($_POST["name"]);
+
+
+   // Validate name
+   if (empty($pid)) {
+      $errors[] = "Name is required.";
+   }
+
+
+
+   // If there are no errors, proceed to the next form
+   if (empty($errors)) {
+      // Redirect to the next form with the data in the query string
+      header("Location: SubMenu/menu.php?pid=$pid");
+      exit();
+   }
+}
+
+// Function to sanitize user input
+function sanitize_input($data) {
+   $data = trim($data);
+   return $data;
+}
+?>
 
 
 
@@ -94,7 +127,7 @@ button:hover{
    /* remove the borders */
    border: none;
    /* set the background color to blue */
-   background-color: var(--main-color);
+   background-color: #2980b9;
    /* rest of the code... */
    padding: 2px 12px;
    color: #333;
@@ -167,6 +200,45 @@ button:hover{
       font-size: 24px;
    }
 }
+
+
+   /* Style for the h2 elements inside the square box */
+   .square-box {
+      background-color: #fff;
+      border: 2px solid #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      width: 300px; /* Default width for larger screens */
+      height: 400px; /* Default height for larger screens */
+   }
+
+   /* Style for the h2 elements inside the square box */
+   .square-box h2 {
+      font-size: 24px;
+      margin: 0;
+      color: #333;
+   }
+
+   @media (max-width: 1200px) {
+      .square-box {
+         margin: 10px;
+         gap: 2rem;
+         margin-left: 300px;
+         margin-bottom: 60px;
+         height: auto;
+         border: 2px solid #2980b9; /* Add a red border */
+      }
+
+   }
+
+   @media (max-width: 480px) {
+      .square-box {
+         width: 100%; /* 1 item per row for mobile */
+      }
+   }
 </style>
 <script>
 
@@ -248,7 +320,7 @@ genetic.start();
     <?php
      if(isset($_POST['search_box']) OR isset($_POST['search_btn'])){
      $search_box = $_POST['search_box'];
-     $select_products = $conn->prepare("SELECT * FROM `Items` WHERE CONCAT_WS(' ', name, type, othertype, description, date, color, location, otherloc) LIKE '%{$search_box}%' OR name LIKE '%{$search_box}%' OR image_01 LIKE '%{$search_box}%' OR date LIKE '%{$search_box}%' OR type LIKE '%{$search_box}%' OR othertype LIKE '%{$search_box}%' OR description LIKE '%{$search_box}%' OR datefound LIKE '%{$search_box}%' OR brand LIKE '%{$search_box}%' OR color LIKE '%{$search_box}%' OR CONCAT_WS(' ', description, type, othertype, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, othertype, type, description) LIKE '%{$search_box}%' OR CONCAT_WS(' ', description, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, description) LIKE '%{$search_box}%' OR CONCAT_WS(' ', type, othertype) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, type) LIKE '%{$search_box}%' OR CONCAT_WS(' ', type, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', brand, location) LIKE '%{$search_box}%' OR CONCAT_WS(' ', datefound, brand) LIKE '%{$search_box}%' OR CONCAT_WS(' ', datefound, location) LIKE '%{$search_box}%'");     
+     $select_products = $conn->prepare("SELECT * FROM `items` WHERE CONCAT_WS(' ', name, type, othertype, description, date, color, location, otherloc) LIKE '%{$search_box}%' OR name LIKE '%{$search_box}%' OR image_01 LIKE '%{$search_box}%' OR date LIKE '%{$search_box}%' OR type LIKE '%{$search_box}%' OR othertype LIKE '%{$search_box}%' OR description LIKE '%{$search_box}%' OR datefound LIKE '%{$search_box}%' OR brand LIKE '%{$search_box}%' OR color LIKE '%{$search_box}%' OR CONCAT_WS(' ', description, type, othertype, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, othertype, type, description) LIKE '%{$search_box}%' OR CONCAT_WS(' ', description, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, description) LIKE '%{$search_box}%' OR CONCAT_WS(' ', type, othertype) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, type) LIKE '%{$search_box}%' OR CONCAT_WS(' ', type, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', brand, location) LIKE '%{$search_box}%' OR CONCAT_WS(' ', datefound, brand) LIKE '%{$search_box}%' OR CONCAT_WS(' ', datefound, location) LIKE '%{$search_box}%'");     
      $select_products->execute();
      if($select_products->rowCount() > 0){
       while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
@@ -274,7 +346,7 @@ genetic.start();
 <section class="search-form">
    <form action="" method="post">
       <input type="text" name="search_box" placeholder="Search here..." maxlength="100" class="box" required>
-      <button type="submit" class="fas fa-search" name="search_btn"></button>  
+      <button style="background-color:#2980b9;" type="submit" class="fas fa-search" name="search_btn"></button>  
    </form>
 
    <a href="index.html" style="text-decoration:none;">
@@ -287,33 +359,31 @@ genetic.start();
 <section class="products" style="padding-top: 0; min-height:100vh;">
 
    <div class="box-container">
-
+   
    <?php
      if(isset($_POST['search_box']) OR isset($_POST['search_btn'])){
      $search_box = $_POST['search_box'];
-     $select_products = $conn->prepare("SELECT * FROM `Items` WHERE CONCAT_WS(' ', name, type, othertype, description, date, color, location, otherloc) LIKE '%{$search_box}%' OR name LIKE '%{$search_box}%' OR image_01 LIKE '%{$search_box}%' OR date LIKE '%{$search_box}%' OR type LIKE '%{$search_box}%' OR othertype LIKE '%{$search_box}%' OR description LIKE '%{$search_box}%' OR datefound LIKE '%{$search_box}%' OR brand LIKE '%{$search_box}%' OR color LIKE '%{$search_box}%' OR CONCAT_WS(' ', description, type, othertype, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, othertype, type, description) LIKE '%{$search_box}%' OR CONCAT_WS(' ', description, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, description) LIKE '%{$search_box}%' OR CONCAT_WS(' ', type, othertype) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, type) LIKE '%{$search_box}%' OR CONCAT_WS(' ', type, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', brand, location) LIKE '%{$search_box}%' OR CONCAT_WS(' ', datefound, brand) LIKE '%{$search_box}%' OR CONCAT_WS(' ', datefound, location) LIKE '%{$search_box}%' OR CONCAT_WS(' ', brand, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, brand) LIKE '%{$search_box}%' OR CONCAT_WS(' ', type, brand) LIKE '%{$search_box}%' OR CONCAT_WS(' ', othertype, brand) LIKE '%{$search_box}%'");     
+     $select_products = $conn->prepare("SELECT * FROM `items` WHERE CONCAT_WS(' ', name, type, othertype, description, date, color, location, otherloc) LIKE '%{$search_box}%' OR name LIKE '%{$search_box}%' OR image_01 LIKE '%{$search_box}%' OR date LIKE '%{$search_box}%' OR type LIKE '%{$search_box}%' OR othertype LIKE '%{$search_box}%' OR description LIKE '%{$search_box}%' OR datefound LIKE '%{$search_box}%' OR brand LIKE '%{$search_box}%' OR color LIKE '%{$search_box}%' OR CONCAT_WS(' ', description, type, othertype, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, othertype, type, description) LIKE '%{$search_box}%' OR CONCAT_WS(' ', description, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, description) LIKE '%{$search_box}%' OR CONCAT_WS(' ', type, othertype) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, type) LIKE '%{$search_box}%' OR CONCAT_WS(' ', type, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', brand, location) LIKE '%{$search_box}%' OR CONCAT_WS(' ', datefound, brand) LIKE '%{$search_box}%' OR CONCAT_WS(' ', datefound, location) LIKE '%{$search_box}%' OR CONCAT_WS(' ', brand, color) LIKE '%{$search_box}%' OR CONCAT_WS(' ', color, brand) LIKE '%{$search_box}%' OR CONCAT_WS(' ', type, brand) LIKE '%{$search_box}%' OR CONCAT_WS(' ', othertype, brand) LIKE '%{$search_box}%'");     
      $graph_json;
      $select_products->execute();
      if($select_products->rowCount() > 0){
       while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
    ?>
-
-   <form action="surrender.php" method="post" class="box">
+   <div class="square-box">
+   <form action="SubMenu/menu.php" method="post" class="box">
       <input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
       <input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
       <input type="hidden" name="type" value="<?= $fetch_product['type']; ?>">
       <input type="hidden" name="image" value="<?= $fetch_product['image_01']; ?>">
-      <a onclick="modal1()" id="mpopupLink" class="fas fa-eye"></a>
+      <a style="color:#2980b9;" onclick="modal1()" id="mpopupLink" class="mpopupLink fas fa-eye"></a>
       <img src="lock.png" alt="">
-      <div class="type"><?= $fetch_product['type']; ?></div>
+      <h2 class="type"><?= $fetch_product['type']; ?></h2>
       <div class="type"><?= $fetch_product['othertype']; ?></div>
-      <div class="flex">
-         <div class="price"><span>Date Surrendered: </span><?= $fetch_product['date']; ?><span></span></div>
-         
-      </div>
-      <input type="submit" value="Claim" class="btn" name="claim">
+      <h2 style="color:red;" class="price"><span>Date Surrendered: </span><?= $fetch_product['date']; ?></h2>     
+      <input style="height:40px; background-color:#2980b9; color: white;" type="submit" value="Claim" class="btn" name="claim">
    </form>
-
+   
+      </div>
 
    <?php
          }
