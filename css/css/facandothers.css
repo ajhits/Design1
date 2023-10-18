@@ -1,16 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(../images/sas.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+h1,
+h2,
+h4 {
+     letter-spacing: 0;
+     font-weight: normal;
+     position: relative;
+     padding: 0 0 10px 0;
+     font-weight: normal;
+     line-height: normal;
+     color: #111111;
+     margin: 0
+}
+
+h4 {
+    font-size: 16px
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.titlepage {
+    text-align: center;
+    padding-bottom: 60px;
+}
+
+.titlepage h2 {
+    font-size: 45px;
+    color: #5a2f27;
+    line-height: 55px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.white {
+    color: #fafafa;
+    font-weight: bold;
+}
+
+:focus {
+    outline: 0;
+}
+
 /* claimants information */
 
 .information {
-    background-image: url(../images/sas.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    /* margin: 0; */
-    padding: 200px 0;
+    padding: 30px 0;
     height: 100vh;
 }
 
 .text-bg {
     text-align: left;
+    margin-right: 500px;
 }
 
 .text-bg h1 {
@@ -19,26 +74,28 @@
     line-height: 120px;
     padding-bottom: 15px;
     font-weight: bold;
+    margin-left: 20px; 
 }
 
 .img-logo {
     text-align: left;
+    margin-left: 20px;
 }
 
 .img-logo img {
-    max-width: 100%;
+    max-width: 500px; /* Set the maximum width of the image */
     height: auto;
     display: block;
-    margin: 0 auto 15px; 
-    padding-top: 75px;
-    padding-right: 50px;
+    margin: 50px auto 15px;
 }
 
 .main_form {
-    padding: 60px 50px 80px 50px;
+    flex: 1;
+    padding: 60px 50px 60px 50px;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     border-top: #eda911 solid 15px;
+    margin-bottom: 20px;
 }
 
 .main_form .contactus {
@@ -108,7 +165,6 @@
     color: #fbfaf8;
     opacity: 1;
 }
-
 /* end of claimants information */
 
 .back-button {
@@ -130,18 +186,6 @@
     text-decoration: none;
 }
 
-@media (max-width: 1900px){
-    .options {
-        background-size: cover;
-        background-attachment: scroll;
-        height: auto;
-    }
 
-    .information {
-        background-size: cover;
-        background-attachment: scroll;
-        height: auto;
-    }
-}
 
 

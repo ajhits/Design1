@@ -13,7 +13,7 @@ $errors = [];
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    // Validate and sanitize user input
-   $pid = sanitize_input($_POST["name"]);
+
 
 
    // Validate name
@@ -86,8 +86,24 @@ function sanitize_input($data) {
    left: 0;
 }
 
-button:hover{
-   background-color: var(--black);
+.back-button {
+    position: absolute;
+    top: 6px;
+    left: 20px;
+    display: inline-block;
+    padding: 15px 18px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    color: #000000;
+    background-color: #eda911;
+    text-decoration: none;
 }
 /*modal*/
 .mpopup {
@@ -308,6 +324,8 @@ genetic.start();
 <body>
    
 <h1>LOST AND FOUND RTU</h1>
+
+<a href="../html/index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back</a>
 <!-- Modal popup box -->
 <div id="mpopupBox" class="mpopup">
     <!-- Modal content -->
@@ -347,12 +365,7 @@ genetic.start();
    <form action="" method="post">
       <input type="text" name="search_box" placeholder="Search here..." maxlength="100" class="box" required>
       <button style="background-color:#2980b9;" type="submit" class="fas fa-search" name="search_btn"></button>  
-   </form>
-
-   <a href="index.html" style="text-decoration:none;">
-   <button  class="fas fa-arrow-left" type="button" id="return"></button></a>
-
-   
+   </form>   
    
 </section>
 

@@ -46,9 +46,6 @@ function sanitize_input($data)
     $data = trim($data);
     return $data;
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -62,17 +59,34 @@ function sanitize_input($data)
      <link rel="stylesheet" href="../css/css/style.css">
      <!-- bootstrap css -->
      <link rel="stylesheet" href="../css/css/bootstrap.min.css">
+     <!-- responsive -->
+    <link rel="stylesheet" href="../../css/css/responsive.css">   
  
      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
 </head>
 <body>
-    <a href="index.html" class="back-button"><i class="fa fa-arrow-left"></i> Back</a>
+
+    <div class="tooltip-trigger" id="help-icon">
+        <i class="fa fa-question-circle" aria-hidden="true"></i>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="help-form">
+            <h3>Help</h3>
+            <p>When writing the description, you must use a comma after each item.</p>
+        </div>
+    </div>
+
+    <a href="search.php" class="back-button"><i class="fa fa-arrow-left"></i> Back</a>
 
     <section class="information">
         <div class="container">
             <div class="center">
+                <div class="text-compare">
+                    <h3>Input the correct specifications of your item to validate ownership.</h3>
+                </div>
                     <form id="request" class="main_form" >
                         <div class="row">
                             <div class="col-md-12 ">
@@ -90,13 +104,10 @@ function sanitize_input($data)
                             <div class="col-sm-12">
                                 <button class="send_btn" onclick="compareText()">Claim</button>
                             </div>
-                            <div class="col-md-12">
-                                <p style="color: white; ">Input the correct specifications of your item to validate ownership.</p>
-                            </div>       
                         </div>
                     </form>
                     
-                    <form id="request" class="main_form">
+                    <form id="request" class="main_form" hidden>
                         <div class="row">
                             <div class="col-md-12 ">
                                 <input class="contactus" placeholder="Name" type="type" id="type2" value="<?php echo $product['type']; ?>"> 
@@ -115,7 +126,6 @@ function sanitize_input($data)
 
                 </div>     
             </div>
-
             <script>
         function compareText() {
             var type1 = document.getElementById('type1').value.toLowerCase();
@@ -152,18 +162,33 @@ function sanitize_input($data)
             
             var percent = (similarity / 4) * 100;
             var resultMessage = "Similarity: " + percent.toFixed(2) + "%";
-            alert(resultMessage + " <?php echo $product['code']; ?>");
-
-            // if (percent > 75) {
-                
-            // }
-            // else{
-
-            // }
-            
+            alert(resultMessage);
         }
     </script>
      </section>
 
 </body>
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function () {
+    // Show the overlay and help form when clicking the help icon
+    $('#help-icon').click(function () {
+        $('#overlay').fadeIn();
+    });
+
+    // Close the overlay and help form when clicking the exit button
+    $('#exit-button').click(function () {
+        $('#overlay').fadeOut();
+    });
+
+    // Close the overlay and help form when clicking outside of it
+    $('#overlay').click(function (e) {
+        if (e.target === this) {
+            $('#overlay').fadeOut();
+        }
+    });
+});
+</script>
 </html>

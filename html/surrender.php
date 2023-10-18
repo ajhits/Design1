@@ -65,185 +65,124 @@ if(isset($_POST['add_item'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Surrender</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparing</title>
 
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <link rel="stylesheet" href="../css/admin_style.css">
-
-   <style>
-
-   body{
-      background-image: url("../html/images/sas.jpg");
-   }
-   button{
-   font-size: 2.5rem;
-   height: 5.5rem;
-   line-height: 5.5rem;
-   background-color: var(--main-color);
-   cursor: pointer;
-   color:var(--white);
-   border-radius: .5rem;
-   width: 6rem;
-   text-align: center;
-}
-
-#return{
-   position: absolute;
-   top: 0;
-   left: 0;
-}
-
-button:hover{
-   background-color: var(--black);
-}
-
-.square-box {
-   background-color: #fff;
-   max-width: 600px; /* Set your desired maximum width */
-   margin: 0 auto; /* Center the box horizontally */
-   padding: 20px; /* Add some padding to space the content from the edges */
-
-   }
-
-
-
-
-
-   </style>
-
+   <!-- style css -->
+   <link rel="stylesheet" href="../css/css/style.css">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="../css/css/bootstrap.min.css">
+    <!-- responsive -->
+    <link rel="stylesheet" href="../css/css/responsive.css">
+ 
+   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 </head>
 <body>
 
+    <a href="../html/index.html" class="back-button"><i class="fa fa-arrow-left"></i> Back</a>
 
-<section class="add-products">
-
-   <h1 style="color:white;" class="heading">Surrender Item</h1>
-
-   <a href="../html/index.html" style="text-decoration:none;">
-   <button  class="fas fa-arrow-left" type="button" id="return"></button></a>
-   <div class="square-box">
-   <form action="" method="post" enctype="multipart/form-data">
-      <div class="flex">
-         <hidden class="inputBox">
-            <span>Surrenderer Name:</span>
-            <input type="text" class="box" placeholder="Name" name="name">
-         </div>
-         <div class="inputBox">
-            <span><br>Date Recovered</span>
-            <input style="background-color:lightgray;" type="date" class="box" name="date" id="date">
-         </div>
-      <div class="inputBox">
-         <span><br>Item Type</span>
-         <select type="text" class="box" required maxlength="100" placeholder="Item Type" name="type" onchange="showInputBox(this)">
-          <option value="Cellphone">Cellphone</option>
-          <option value="Wallet">Wallet</option>
-          <option value ="Coin Purse">Coin Purse</option>
-          <option value="Umbrella">Umbrella</option>
-          <option value="Book">Book</option>
-          <option value="Notebook">Notebook</option>
-          <option value="Ballpen">Ballpen</option>
-          <option value="Tumbler">Tumbler</option>
-          <option value="Handkerchief">Handkerchief</option>
-          <option value="Hair Clip">Hair Clip</option>
-          <option value ="Earphone">Earphone</option>
-          <option value ="ID">ID</option>
-          <option value ="Purse">Purse</option>
-          <option value ="Jewelry">Jewelry</option>
-          <option value ="Keys">Keys</option>
-          <option value ="Headwear">Headwear</option>
-          <option value ="Cutlery">Cutlery</option>
-          <option value ="Watches">Accessories</option>
-          <option value ="USB flash drives">USB flash drives</option>
-          <option value ="Calculators ">Calculators </option>
-          <option value ="Chargers">Chargers</option>
-          <option value="Other">Other</option>
-          
-          </select>
-       </div>
-         <div class="inputBox" id="inputbox" style="display: none;">
-          <span><br>Please Specify</span>
-            <input type="text" class="box" placeholder="Example: Gloves" name="other_type" id="other_type">
-         </div>
-         <div class="inputBox">
-            <span><br>Item Brand</span>
-            <input type="text" class="box" placeholder="Example: Iphone" name="brand" id="brand">
-         </div>
-         <div class="inputBox">
-            <span><br>Item Color</span>
-            <input type="text" class="box" placeholder="Example: Red" name="color">
-         </div>
-         <input type="hidden" name="date_today" value="<?php echo date('Y-m-d'); ?>">
-         <div class="inputBox">
-            <span><br>Item Description: Keychain,Logo,Amount of Money</span>
-            <textarea name="description" placeholder="Enter Item Details" class="box" required maxlength="500" cols="30" rows="10"></textarea>
-         </div>
-         <div class="inputBox">
-         <span><br>Location Found</span>
-         <select type="text" class="box" required maxlength="100" placeholder="location" name="location" onchange="showInputBox2(this)">
-          <option value="CEA Building">CEA Building</option>
-          <option value="CBEA Building">CBEA Building</option>
-          <option value="CAS Building">CAS Building</option>
-          <option value="CED Building">CED Building</option>
-          <option value="Old Canteen">Old Canteen</option>
-          <option value="New Canteen">New Canteen</option>
-          <option value="Park">Park</option>
-          <option value="Court">Court</option>
-          <option value="Other">Other</option>
-          </select>
-       </div>
-         <div class="inputBox" id="inputbox2" style="display: none;">
-          <span><br>Please Specify</span>
-            <input type="text" class="box" placeholder="Example: CR CEA" name="other_loc" id="other_loc">
-         </div>
-         
-      
-      
-      <input style="background-color:#2980b9; color: white;" type="submit" value="Surrender" class="btn" name="add_item">
-   </form>
-   </div>
-<button name="hidden-btn" onclick="modal1();" id="mpopupLink" hidden>click me</button>
-
-
-
-</section>
-<script>
-  const fileInput = document.getElementById('fileInput');
-  fileInput.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.addEventListener('load', (event) => {
-      const img = document.createElement('img');
-      img.src = event.target.result;
-      // Do something with the image, such as upload it to the server
-    });
-    reader.readAsDataURL(file);
-  });
-</script>
-
-<script src="../js/admin_script.js"></script>
-<script>
-function showInputBox(select) {
-  var inputbox = document.getElementById("inputbox");
-  if (select.value === "Other") {
-    inputbox.style.display = "block";
-  } else {
-    inputbox.style.display = "none";
-  }
-}
-function showInputBox2(select) {
-  var inputbox = document.getElementById("inputbox2");
-  if (select.value === "Other") {
-    inputbox.style.display = "block";
-  } else {
-    inputbox.style.display = "none";
-  }
-}
-
-</script>
-   
+    <section class="information">
+        <div class="container">
+            <div class="center">
+                    <div class="text-compare">
+                        <h1>SURRENDER ITEM</h1>
+                    </div>
+                        <form action="" method="post" enctype="multipart/form-data" id="request" class="main_form" >
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <input class="contactus" placeholder="Surrenderer Name" type="text" name="name"> 
+                                </div>
+                                <div class="col-md-12 ">
+                                    <span style="color:white;">Date Recovered:</span>
+                                    <input class="contactus" placeholder="Date Recovered" type="date" name="date" id="date"> 
+                                </div>
+                                <div class="col-md-12">
+                                    <select class="form-select" style="height: 55px; " required maxlength="100" id="pleaseSpecify" name="type">
+                                    <option selected>Select Item Type</option>
+                                    <option value="Cellphone">Cellphone</option>
+                                    <option value="Wallet">Wallet</option>
+                                    <option value ="Coin Purse">Coin Purse</option>
+                                    <option value="Umbrella">Umbrella</option>
+                                    <option value="Book">Book</option>
+                                    <option value="Notebook">Notebook</option>
+                                    <option value="Ballpen">Ballpen</option>
+                                    <option value="Tumbler">Tumbler</option>
+                                    <option value="Handkerchief">Handkerchief</option>
+                                    <option value="Hair Clip">Hair Clip</option>
+                                    <option value ="Earphone">Earphone</option>
+                                    <option value ="ID">ID</option>
+                                    <option value ="Purse">Purse</option>
+                                    <option value ="Jewelry">Jewelry</option>
+                                    <option value ="Keys">Keys</option>
+                                    <option value ="Headwear">Headwear</option>
+                                    <option value ="Cutlery">Cutlery</option>
+                                    <option value ="Watches">Accessories</option>
+                                    <option value ="USB flash drives">USB flash drives</option>
+                                    <option value ="Calculators ">Calculators </option>
+                                    <option value ="Chargers">Chargers</option>
+                                    <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <!-- Additional input box initially hidden -->
+                                    <input class="contactus" placeholder="Please Specify" name="other_type" id="other_type" style="display: none;">
+                                </div>
+                                <div class="col-md-12 ">
+                                    <input class="contactus" placeholder="Item Brand" type="text" name="brand" id="brand"> 
+                                </div>
+                                <div class="col-md-12 ">
+                                    <input class="contactus" placeholder="Item Color" type="text" name="color"> 
+                                </div>
+                                <input type="hidden" name="date_today" value="<?php echo date('Y-m-d'); ?>">
+                                <div class="col-md-12 ">
+                                    <input class="contactus" placeholder="Item Description: Keychain,Logo,Amount of Money" type="text" name="description"> 
+                                </div>
+                                <div class="col-md-12">
+                                    <select class="form-select" style="height: 55px; " required maxlength="100" id="location" name="location">
+                                    <option selected>Select Location Found</option>
+                                    <option value="CEA Building">CEA Building</option>
+                                    <option value="CBEA Building">CBEA Building</option>
+                                    <option value="CAS Building">CAS Building</option>
+                                    <option value="CED Building">CED Building</option>
+                                    <option value="Old Canteen">Old Canteen</option>
+                                    <option value="New Canteen">New Canteen</option>
+                                    <option value="Park">Park</option>
+                                    <option value="Court">Court</option>
+                                    <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <!-- Additional input box initially hidden -->
+                                    <input class="contactus" placeholder="Please Specify" name="other_loc" id="other_loc" style="display: none;">
+                                </div>
+                                <div class="col-sm-12">
+                                    <button class="send_btn" type="submit" value="Surrender"  name="add_item">Surrender</button>
+                                </div>
+                            </div>
+                        </form>   
+                </div>
+            </div>
+     </section>
 </body>
+<script>
+    document.getElementById("pleaseSpecify").addEventListener("change", function () {
+        var otherType = document.getElementById("other_type");
+        if (this.value === "Other") {
+            otherType.style.display = "block";
+        } else {
+            otherType.style.display = "none";
+        }
+    });
+
+    document.getElementById("location").addEventListener("change", function () {
+        var otherLoc= document.getElementById("other_loc");
+        if (this.value === "Other") {
+            otherLoc.style.display = "block";
+        } else {
+            otherLoc.style.display = "none";
+        }
+    });
+</script>
 </html>
